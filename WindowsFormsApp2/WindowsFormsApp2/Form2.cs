@@ -14,11 +14,13 @@ using System.IO;
 
 namespace WindowsFormsApp2
 {
+
     public partial class Form2 : Form
     {
+
         public Form2()
         {
-            
+
             InitializeComponent();
             panel1.Visible = false;
             panel2.Visible = false;
@@ -32,14 +34,14 @@ namespace WindowsFormsApp2
         private void gENERATEKEYToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panel2.Visible = false;
-            panel1.Visible=true;
+            panel1.Visible = true;
         }
 
         private void vIEWRECORDSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panel1.Visible = false;
             panel2.Visible = true;
-            string MyConnection2 = "datasource=localhost;database=karnex;port=3306;username=root;password=root";
+            string MyConnection2 = "datasource=karnex.in;database=karnexin_rahul;port=3306;username=karnexin_rahul;password=rahul";
             string Query = "select *from license;";
             MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
             MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
@@ -52,8 +54,20 @@ namespace WindowsFormsApp2
 
         private void button1_Click(object sender, EventArgs e)
         {
+            WebRequest request = HttpWebRequest.Create("http://127.0.0.1:8081/newkey");
+            WebResponse response = request.GetResponse();
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+            string urlText = reader.ReadToEnd();
+            textBox1.Text = urlText;
 
-            textBox1.Text = "hiugigoig";
         }
+
+
     }
 }
+
+
+
+
+
+

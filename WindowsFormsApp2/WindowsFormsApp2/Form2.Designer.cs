@@ -33,13 +33,13 @@
             this.gENERATEKEYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vIEWRECORDSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -85,13 +85,43 @@
             this.panel1.Size = new System.Drawing.Size(776, 407);
             this.panel1.TabIndex = 1;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(361, 201);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(210, 28);
+            this.comboBox1.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F);
+            this.label2.Location = new System.Drawing.Point(215, 200);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(140, 24);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "VALID UPTO";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(387, 249);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(107, 30);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "GENERATE";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(361, 157);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(158, 26);
+            this.textBox1.Size = new System.Drawing.Size(210, 26);
             this.textBox1.TabIndex = 1;
             // 
             // label1
@@ -119,36 +149,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(773, 390);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(387, 249);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 30);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "GENERATE";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F);
-            this.label2.Location = new System.Drawing.Point(215, 200);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 24);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "VALID UPTO";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(361, 201);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(158, 28);
-            this.comboBox1.TabIndex = 5;
             // 
             // Form2
             // 
