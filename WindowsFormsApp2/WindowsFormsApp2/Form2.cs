@@ -14,7 +14,7 @@ using System.IO;
 
 namespace WindowsFormsApp2
 {
-
+    
     public partial class Form2 : Form
     {
 
@@ -62,7 +62,17 @@ namespace WindowsFormsApp2
 
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0) // make sure user select at least 1 row 
+            {
+                string Id = dataGridView1.SelectedRows[0].Cells[0].Value + string.Empty;
+                textBox3.Text = Id;
+                panel1.Visible = true;
+                panel2.Visible = false;
 
+            }
+        }
     }
 }
 
