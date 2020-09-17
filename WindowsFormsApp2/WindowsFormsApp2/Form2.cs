@@ -24,17 +24,20 @@ namespace WindowsFormsApp2
             InitializeComponent();
             panel1.Visible = false;
             panel2.Visible = false;
-            comboBox1.Items.Add("TRAIL");
-            comboBox1.Items.Add("1 YEAR");
-            comboBox1.Items.Add("6 MONTHS");
-            comboBox1.SelectedItem = "TRAIL";
-            comboBox1.SelectedIndex = comboBox1.FindStringExact("test3");
+           
+            
         }
 
         private void gENERATEKEYToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panel2.Visible = false;
             panel1.Visible = true;
+            comboBox1.Items.Add("TRAIL");
+            comboBox1.Items.Add("1 YEAR");
+            comboBox1.Items.Add("6 MONTHS");
+            button1.Enabled = false;
+            
+            
         }
 
         private void vIEWRECORDSToolStripMenuItem_Click(object sender, EventArgs e)
@@ -54,23 +57,36 @@ namespace WindowsFormsApp2
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //button1.Enabled = !string.IsNullOrWhiteSpace(comboBox1.Text);
             WebRequest request = HttpWebRequest.Create("http://127.0.0.1:8081/newkey");
             WebResponse response = request.GetResponse();
             StreamReader reader = new StreamReader(response.GetResponseStream());
             string urlText = reader.ReadToEnd();
-            textBox1.Text = urlText;
+            //textBox1.Text = urlText;
+            string date = comboBox1.Text;
+            string[] authorsList = urlText.Split(',');
+            textBox1.Text = authorsList[0];
+            textBox2.Text = authorsList[1];
+
+        }
+        
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //if (dataGridView1.SelectedRows.Count > 0) // make sure user select at least 1 row 
+            //{
+            //    string Id = dataGridView1.SelectedRows[0].Cells[0].Value + string.Empty;
+            //    textBox3.Text = Id;
+            //    panel1.Visible = true;
+            //    panel2.Visible = false;
+            //}
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0) // make sure user select at least 1 row 
+            if (comboBox1.SelectedItem != null)
             {
-                string Id = dataGridView1.SelectedRows[0].Cells[0].Value + string.Empty;
-                textBox3.Text = Id;
-                panel1.Visible = true;
-                panel2.Visible = false;
-
+                button1.Enabled = true;
             }
         }
     }
