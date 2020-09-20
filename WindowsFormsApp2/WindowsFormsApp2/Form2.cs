@@ -11,6 +11,7 @@ using MySql.Data.MySqlClient;
 using System.Net.Http;
 using System.Net;
 using System.IO;
+using MySqlX.XDevAPI.Relational;
 
 namespace WindowsFormsApp2
 {
@@ -45,7 +46,8 @@ namespace WindowsFormsApp2
             panel1.Visible = false;
             panel2.Visible = true;
             string MyConnection2 = "datasource=karnex.in;database=karnexin_rahul;port=3306;username=karnexin_rahul;password=rahul";
-            string Query = "select *from license;";
+            string Query = "select id \"ID\", org_name \"Organization Name\",validUpto \"Valid Upto\",Replace(Replace(Replace(activation_status,2,\"Activated\"),0,\"Key Generated\"),1,\"Activation Pending\") \"Activation Status\",l_key \"License Key\",serial_no \"Serial Number\" from license ;";
+            Console.WriteLine(Query);
             MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
             MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
             MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
@@ -53,6 +55,7 @@ namespace WindowsFormsApp2
             DataTable dTable = new DataTable();
             MyAdapter.Fill(dTable);
             dataGridView1.DataSource = dTable;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -91,7 +94,7 @@ namespace WindowsFormsApp2
             if (dataGridView1.SelectedRows.Count > 0) // make sure user select at least 1 row 
             {
                 string Id = dataGridView1.SelectedRows[0].Cells[0].Value + string.Empty;
-                if (dataGridView1.SelectedRows[0].Cells[4].Value.Equals(1))
+                if (dataGridView1.SelectedRows[0].Cells[3].Value.Equals("Activation Pending"))
                 {
                     string MyConnection2 = "datasource=karnex.in;database=karnexin_rahul;port=3306;username=karnexin_rahul;password=rahul";
                     string Query = "update license set activation_status='2' where id=" + Id;
