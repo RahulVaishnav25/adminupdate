@@ -15,19 +15,26 @@ using MySqlX.XDevAPI.Relational;
 
 namespace WindowsFormsApp2
 {
+
     public partial class Form2 : Form
     {
+
         public Form2()
         {
+
             InitializeComponent();
             panel1.Visible = false;
             panel2.Visible = false;
+
+
         }
+
         private void gENERATEKEYToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panel2.Visible = false;
             panel1.Visible = true;
         }
+
         private void vIEWRECORDSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panel1.Visible = false;
@@ -44,11 +51,18 @@ namespace WindowsFormsApp2
             dataGridView1.DataSource = dTable;
 
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
+
+            //button1.Enabled = !string.IsNullOrWhiteSpace(comboBox1.Text);
             WebRequest request = HttpWebRequest.Create("http://127.0.0.1:8081/newkey");
-            var postData = "date=" + String.Join("-",dateTimePicker1.Value.Date.ToString().Split(' ')[0].Split('-').Reverse());
+            var postData = "date=" + String.Join("-", dateTimePicker1.Value.Date.ToString().Split(' ')[0].Split('-').Reverse());
+
+
+
             var data = Encoding.ASCII.GetBytes(postData);
+
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = data.Length;
@@ -62,13 +76,13 @@ namespace WindowsFormsApp2
             string urlText = reader.ReadToEnd();
             //textBox1.Text = urlText;
             MessageBox.Show(urlText);
-           
+
             string[] authorsList = urlText.Split(',');
             textBox1.Text = authorsList[0];
             textBox2.Text = authorsList[1];
 
         }
-        
+
         private void button3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0) // make sure user select at least 1 row 
@@ -102,8 +116,6 @@ namespace WindowsFormsApp2
         {
             MessageBox.Show(String.Join("-", dateTimePicker1.Value.Date.ToString().Split(' ')[0].Split('-').Reverse()));
         }
-
-       
     }
 }
 
