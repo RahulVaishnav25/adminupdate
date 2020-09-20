@@ -15,32 +15,19 @@ using MySqlX.XDevAPI.Relational;
 
 namespace WindowsFormsApp2
 {
-    
     public partial class Form2 : Form
     {
-
         public Form2()
         {
-
             InitializeComponent();
             panel1.Visible = false;
             panel2.Visible = false;
-           
-            
         }
-
         private void gENERATEKEYToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panel2.Visible = false;
             panel1.Visible = true;
-            //comboBox1.Items.Add("TRAIL");
-            //comboBox1.Items.Add("1 YEAR");
-            //comboBox1.Items.Add("6 MONTHS");
-            //button1.Enabled = false;
-            
-            
         }
-
         private void vIEWRECORDSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panel1.Visible = false;
@@ -57,18 +44,11 @@ namespace WindowsFormsApp2
             dataGridView1.DataSource = dTable;
 
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
-
-            //button1.Enabled = !string.IsNullOrWhiteSpace(comboBox1.Text);
             WebRequest request = HttpWebRequest.Create("http://127.0.0.1:8081/newkey");
             var postData = "date=" + String.Join("-",dateTimePicker1.Value.Date.ToString().Split(' ')[0].Split('-').Reverse());
-
-            
-            
             var data = Encoding.ASCII.GetBytes(postData);
-
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = data.Length;
@@ -122,6 +102,8 @@ namespace WindowsFormsApp2
         {
             MessageBox.Show(String.Join("-", dateTimePicker1.Value.Date.ToString().Split(' ')[0].Split('-').Reverse()));
         }
+
+       
     }
 }
 
