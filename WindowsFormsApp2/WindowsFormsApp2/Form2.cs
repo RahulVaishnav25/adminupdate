@@ -127,17 +127,18 @@ namespace WindowsFormsApp2
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //var postData = "date=" + String.Join("-", dateTimePicker1.Value.Date.ToString().Split(' ')[0].Split('-').Reverse());
+
+            var postData1 = String.Join("-", dateTimePicker1.Value.Date.ToString().Split(' ')[0].Split('-').Reverse());
             //var postData = "2020-12-13";
             string Id = dataGridView1.SelectedRows[0].Cells[0].Value + string.Empty;
             string MyConnection2 = "datasource=karnex.in;database=karnexin_rahul;port=3306;username=karnexin_rahul;password=rahul";
-            string Query = "update license set validUpto='2020-12-13' where id=" + Id;
+            string Query = "update license set validUpto='"+postData1+"' where id=" + Id;
             MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
             MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
             MySqlDataReader MyReader2;
             MyConn2.Open();
             MyReader2 = MyCommand2.ExecuteReader();
-            MessageBox.Show("key updated");
+            MessageBox.Show("key updated"+postData1);
 
         }
 
