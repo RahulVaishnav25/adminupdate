@@ -25,7 +25,7 @@ namespace WindowsFormsApp2
             InitializeComponent();
             panel1.Visible = false;
             panel2.Visible = false;
-
+            panel3.Visible = false;
 
         }
 
@@ -58,7 +58,7 @@ namespace WindowsFormsApp2
             //button1.Enabled = !string.IsNullOrWhiteSpace(comboBox1.Text);
             WebRequest request = HttpWebRequest.Create("http://127.0.0.1:8081/newkey");
             var postData = "date=" + String.Join("-", dateTimePicker1.Value.Date.ToString().Split(' ')[0].Split('-').Reverse());
-
+            // MessageBox.Show(postData);
 
 
             var data = Encoding.ASCII.GetBytes(postData);
@@ -97,9 +97,9 @@ namespace WindowsFormsApp2
                     MySqlDataReader MyReader2;
                     MyConn2.Open();
                     MyReader2 = MyCommand2.ExecuteReader();
-                    MessageBox.Show("Data Updated");
+                    MessageBox.Show("key activated");
                 }
-                else { MessageBox.Show("Data"); }
+                else { MessageBox.Show("User dont requested for activation!"); }
             }
 
         }
@@ -115,6 +115,35 @@ namespace WindowsFormsApp2
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show(String.Join("-", dateTimePicker1.Value.Date.ToString().Split(' ')[0].Split('-').Reverse()));
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0) // make sure user select at least 1 row 
+            {
+                panel3.Visible = true;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //var postData = "date=" + String.Join("-", dateTimePicker1.Value.Date.ToString().Split(' ')[0].Split('-').Reverse());
+            //var postData = "2020-12-13";
+            string Id = dataGridView1.SelectedRows[0].Cells[0].Value + string.Empty;
+            string MyConnection2 = "datasource=karnex.in;database=karnexin_rahul;port=3306;username=karnexin_rahul;password=rahul";
+            string Query = "update license set validUpto='2020-12-13' where id=" + Id;
+            MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+            MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
+            MySqlDataReader MyReader2;
+            MyConn2.Open();
+            MyReader2 = MyCommand2.ExecuteReader();
+            MessageBox.Show("key updated");
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            panel3.Visible = false;
         }
     }
 }
