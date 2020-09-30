@@ -121,25 +121,45 @@ namespace WindowsFormsApp2
         {
             if (dataGridView1.SelectedRows.Count > 0) // make sure user select at least 1 row 
             {
+                string Id = dataGridView1.SelectedRows[0].Cells[0].Value + string.Empty;
                 panel3.Visible = true;
             }
+            else
+                MessageBox.Show("Select Entry to Update !");
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.SelectedRows.Count > 0) // make sure user select at least 1 row 
+            {
+                string Id = dataGridView1.SelectedRows[0].Cells[0].Value + string.Empty;
+                var postData = "date=" + String.Join("-", dateTimePicker2.Value.Date.ToString().Split(' ')[0].Split('-').Reverse());
 
-            var postData1 = String.Join("-", dateTimePicker1.Value.Date.ToString().Split(' ')[0].Split('-').Reverse());
-            //var postData = "2020-12-13";
-            string Id = dataGridView1.SelectedRows[0].Cells[0].Value + string.Empty;
-            string MyConnection2 = "datasource=karnex.in;database=karnexin_rahul;port=3306;username=karnexin_rahul;password=rahul";
-            string Query = "update license set validUpto='"+postData1+"' where id=" + Id;
-            MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
-            MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-            MySqlDataReader MyReader2;
-            MyConn2.Open();
-            MyReader2 = MyCommand2.ExecuteReader();
-            MessageBox.Show("key updated"+postData1);
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://127.0.0.1:8081/update");
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "POST";
 
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    //string userkey = "UYGY-BRST-QAOQ-EEXM";
+                    string json = "{\"id\":[\"" + Id + "\"],\"validUpto\":[\"" + postData + "\"]}";
+
+                    streamWriter.Write(json);
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                var streamReader = new StreamReader(httpResponse.GetResponseStream());
+                var result = streamReader.ReadToEnd();
+                MessageBox.Show(result);
+                if(result == Id)
+                {
+                    MessageBox.Show("Date updated");
+                }
+                else
+                {
+                    MessageBox.Show("Somethong went wrong !");
+                }
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
