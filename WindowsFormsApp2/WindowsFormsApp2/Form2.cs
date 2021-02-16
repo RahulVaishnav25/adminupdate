@@ -39,7 +39,7 @@ namespace WindowsFormsApp2
         {
             panel1.Visible = false;
             panel2.Visible = true;
-            string MyConnection2 = "datasource=karnex.in;database=karnexin_rahul;port=3306;username=karnexin_rahul;password=rahul";
+            string MyConnection2 = "datasource=***;database=*****;port=3306;username=*******;password=rahul";
             string Query = "select id \"ID\", org_name \"Organization Name\",validUpto \"Valid Upto\",Replace(Replace(Replace(activation_status,2,\"Activated\"),0,\"Key Generated\"),1,\"Activation Pending\") \"Activation Status\",l_key \"License Key\",serial_no \"Serial Number\" from license ;";
             Console.WriteLine(Query);
             MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
@@ -90,7 +90,7 @@ namespace WindowsFormsApp2
                 string Id = dataGridView1.SelectedRows[0].Cells[0].Value + string.Empty;
                 if (dataGridView1.SelectedRows[0].Cells[3].Value.Equals("Activation Pending"))
                 {
-                    string MyConnection2 = "datasource=karnex.in;database=karnexin_rahul;port=3306;username=karnexin_rahul;password=rahul";
+                    string MyConnection2 = "datasource=*****;database=******;port=3306;username=*******;password=rahul";
                     string Query = "update license set activation_status='2' where id=" + Id;
                     MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
                     MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
